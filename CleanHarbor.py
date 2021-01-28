@@ -96,13 +96,18 @@ class Repository(ProjectEntity):
 
 
 class ChartEntity(IEntity):
-    def __init__(self, project_name: str):
+    def __init__(self, project_name: str, chart_name='default'):
         self.__project_name = project_name
         self.__content = None
+        self.__chart_name = chart_name
 
     @property
     def project_name(self):
         return self.__project_name
+
+    @property
+    def chart_name(self):
+        return self.__chart_name
 
     @property
     def content(self):
@@ -123,6 +128,18 @@ class Chart(ChartEntity):
 
     def get_entity(self):
         return 'chart'
+
+
+class ChartTags(ChartEntity):
+    def __init__(self, project_name: str, chart_name: str):
+        super().__init__(project_name, chart_name)
+
+    def get_url(self, root_url):
+        url = root_url + 'chartrepo/' + str(self.project_name) + '/charts/' + str(self.chart_name)
+        return url
+
+    def get_entity(self):
+        return 'chart_tags'
 
 
 class RepositoryTagsEntity(IEntity):
@@ -152,7 +169,7 @@ class RepositoryTags(RepositoryTagsEntity):
         return url
 
     def get_entity(self):
-        return 'repositories_tags'
+        return 'repository_tags'
 
 
 class Harbor:
@@ -176,9 +193,6 @@ class Harbor:
         except Exception as e:
             logger.error(e)
 
-    def getChartTags(self, projectname, chartname):
-        return self.__processresponse(self.__getcontent(self.__buildurl('chart_tags', projectname, chartname)))
-
     def get_all_projects(self):
         project = Project()
         self.__getcontent(project)
@@ -190,14 +204,19 @@ class Harbor:
         return repositories.content
 
     def get_all_tags_in_repository(self, repository_name: str):
-        repositories_tags = RepositoryTags(repository_name)
-        self.__getcontent(repositories_tags)
-        return repositories_tags.content
+        repository_tags = RepositoryTags(repository_name)
+        self.__getcontent(repository_tags)
+        return repository_tags.content
 
     def get_all_charts_in_project(self, project_name: str):
         charts = Chart(project_name)
         self.__getcontent(charts)
         return charts.content
+
+    def get_all_tags_in_chart(self, project_name: str, chart_name: str):
+        chart_tags = ChartTags(project_name, chart_name)
+        self.__getcontent(chart_tags)
+        return chart_tags.content
 
 
 harbor = Harbor("https://harbor.corp.tele2.ru/")
@@ -207,6 +226,8 @@ harbor = Harbor("https://harbor.corp.tele2.ru/")
 # rep = harbor.get_all_repositories(9)
 
 # rep = harbor.get_all_tags_in_repository('pd/backend/auth-service')
-rep = harbor.get_all_charts_in_project('pd')
+# rep = harbor.get_all_charts_in_project('pd')
+
+rep = harbor.get_all_tags_in_chart('pd', 'auth-service')
 
 print(str(rep))
