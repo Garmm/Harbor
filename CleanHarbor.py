@@ -96,10 +96,11 @@ class Repository(ProjectEntity):
 
 
 class ChartEntity(IEntity):
-    def __init__(self, project_name: str, chart_name='default'):
+    def __init__(self, project_name: str, chart_name=None):
         self.__project_name = project_name
         self.__content = None
-        self.__chart_name = chart_name
+        if chart_name:
+            self.__chart_name = chart_name
 
     @property
     def project_name(self):
@@ -222,13 +223,13 @@ class Harbor:
 
 harbor = Harbor("https://harbor.corp.tele2.ru/")
 
-rep = harbor.get_all_projects()
+# rep = harbor.get_all_projects()
 
 # rep = harbor.get_all_repositories(9)
 
 # rep = harbor.get_all_tags_in_repository('pd/backend/auth-service')
 
-# rep = harbor.get_all_charts_in_project('pd')
+rep = harbor.get_all_charts_in_project('pd')
 
 # rep = harbor.get_all_tags_in_chart('pd', 'auth-service')
 
