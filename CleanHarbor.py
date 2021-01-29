@@ -88,7 +88,7 @@ class Repository(ProjectEntity):
         super().__init__(project_id)
 
     def get_url(self, root_url):
-        url = root_url + 'repositories?project_id=' + str(self.project_id.replace('/', '%2F'))
+        url = root_url + 'repositories?project_id=' + str(self.project_id)
         return url
 
     def get_entity(self):
@@ -123,7 +123,7 @@ class Chart(ChartEntity):
         super().__init__(project_name)
 
     def get_url(self, root_url):
-        url = root_url + 'chartrepo/' + str(self.project_name) + '/charts'
+        url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts'
         return url
 
     def get_entity(self):
@@ -135,7 +135,8 @@ class ChartTags(ChartEntity):
         super().__init__(project_name, chart_name)
 
     def get_url(self, root_url):
-        url = root_url + 'chartrepo/' + str(self.project_name) + '/charts/' + str(self.chart_name)
+        url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts/' \
+              + str(self.chart_name.replace('/', '%2F'))
         return url
 
     def get_entity(self):
@@ -165,7 +166,7 @@ class RepositoryTags(RepositoryTagsEntity):
         super().__init__(repository_name)
 
     def get_url(self, root_url):
-        url = root_url + 'repositories/' + str(self.repository_name) + '/tags'
+        url = root_url + 'repositories/' + str(self.repository_name.replace('/', '%2F')) + '/tags'
         return url
 
     def get_entity(self):
@@ -199,9 +200,9 @@ class Harbor:
         return project.content
 
     def get_all_repositories(self, project_id: int):
-        repositories = Repository(project_id)
-        self.__getcontent(repositories)
-        return repositories.content
+        repository = Repository(project_id)
+        self.__getcontent(repository)
+        return repository.content
 
     def get_all_tags_in_repository(self, repository_name: str):
         repository_tags = RepositoryTags(repository_name)
@@ -221,13 +222,14 @@ class Harbor:
 
 harbor = Harbor("https://harbor.corp.tele2.ru/")
 
-# rep = harbor.get_all_projects()
+rep = harbor.get_all_projects()
 
 # rep = harbor.get_all_repositories(9)
 
 # rep = harbor.get_all_tags_in_repository('pd/backend/auth-service')
+
 # rep = harbor.get_all_charts_in_project('pd')
 
-rep = harbor.get_all_tags_in_chart('pd', 'auth-service')
+# rep = harbor.get_all_tags_in_chart('pd', 'auth-service')
 
 print(str(rep))
