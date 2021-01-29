@@ -178,7 +178,7 @@ class Harbor:
     def __init__(self, dns: str):
         self.api = dns + "api/"
 
-    def __getcontent(self, entity: IEntity):
+    def __get_content(self, entity: IEntity, sort_field=None, reverse=False):
 
         try:
             response = requests.get(
@@ -186,8 +186,15 @@ class Harbor:
                 verify=False
             )
             if response.status_code == 200:
-                logger.info("Method: getcontent; Content " + entity.get_entity() + " was got successfully")
-                entity.content = response.json()
+
+                if sort_field:
+                    logger.info("Method: get_content; Content " + entity.get_entity()
+                                + " was got successfully. With sort_field :" + sort_field)
+                    entity.content = sorted(response.json(), key=lambda k: k[sort_field], reverse=reverse)
+                else:
+                    logger.info("Method: get_content; Content " + entity.get_entity() + " was got successfully")
+                    entity.content = response.json()
+
                 return entity
             else:
                 logger.error("Method: getcontent; Response status code : " + str(response.status_code) +
@@ -197,39 +204,39 @@ class Harbor:
 
     def get_all_projects(self):
         project = Project()
-        self.__getcontent(project)
+        self.__get_content(project)
         return project.content
 
     def get_all_repositories(self, project_id: int):
         repository = Repository(project_id)
-        self.__getcontent(repository)
+        self.__get_content(repository)
         return repository.content
 
     def get_all_tags_in_repository(self, repository_name: str):
         repository_tags = RepositoryTags(repository_name)
-        self.__getcontent(repository_tags)
+        self.__get_content(repository_tags)
         return repository_tags.content
 
     def get_all_charts_in_project(self, project_name: str):
         charts = Chart(project_name)
-        self.__getcontent(charts)
+        self.__get_content(charts)
         return charts.content
 
     def get_all_tags_in_chart(self, project_name: str, chart_name: str):
         chart_tags = ChartTags(project_name, chart_name)
-        self.__getcontent(chart_tags)
+        self.__get_content(chart_tags)
         return chart_tags.content
 
 
 harbor = Harbor("https://harbor.corp.tele2.ru/")
 
-# rep = harbor.get_all_projects()
+rep = harbor.get_all_projects()
 
 # rep = harbor.get_all_repositories(9)
 
 # rep = harbor.get_all_tags_in_repository('pd/backend/auth-service')
 
-rep = harbor.get_all_charts_in_project('pd')
+# rep = harbor.get_all_charts_in_project('pd')
 
 # rep = harbor.get_all_tags_in_chart('pd', 'auth-service')
 
