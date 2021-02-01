@@ -6,7 +6,7 @@ import logging
 import time
 import datetime
 from datetime import date, timedelta
-import IEntity
+from Projects import *
 
 # login = sys.argv[0]
 # pwd = sys.argv[1]
@@ -26,44 +26,6 @@ logger = logging.getLogger(__name__)
 
 # Отключение проверки ssl сертификата
 requests.packages.urllib3.disable_warnings()
-
-
-# class IEntity:
-#
-#     def get_url(self, root_url):
-#         pass
-#
-#     def get_entity(self):
-#         pass
-#
-#     @property
-#     def content(self):
-#         pass
-#
-#     @content.setter
-#     def content(self, content):
-#         pass
-
-
-class Project(IEntity):
-
-    def __init__(self):
-        self.__content = None
-
-    def get_url(self, root_url: str):
-        url = root_url + 'projects'
-        return url
-
-    def
-
-
-    @property
-    def content(self):
-        return self.__content
-
-    @content.setter
-    def content(self, content):
-        self.__content = content
 
 
 class ProjectEntity(IEntity):
@@ -254,7 +216,7 @@ class Harbor:
             logger.error(e)
 
     def get_all_projects(self):
-        project = Project()
+        project = Projects()
         self.__get_content(project)
         return project.content
 
