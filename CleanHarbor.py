@@ -6,6 +6,7 @@ import logging
 import time
 import datetime
 from datetime import date, timedelta
+import IEntity
 
 # login = sys.argv[0]
 # pwd = sys.argv[1]
@@ -27,21 +28,21 @@ logger = logging.getLogger(__name__)
 requests.packages.urllib3.disable_warnings()
 
 
-class IEntity:
-
-    def get_url(self, root_url):
-        pass
-
-    def get_entity(self):
-        pass
-
-    @property
-    def content(self):
-        pass
-
-    @content.setter
-    def content(self, content):
-        pass
+# class IEntity:
+#
+#     def get_url(self, root_url):
+#         pass
+#
+#     def get_entity(self):
+#         pass
+#
+#     @property
+#     def content(self):
+#         pass
+#
+#     @content.setter
+#     def content(self, content):
+#         pass
 
 
 class Project(IEntity):
@@ -53,8 +54,7 @@ class Project(IEntity):
         url = root_url + 'projects'
         return url
 
-    def get_entity(self):
-        return 'project'
+    de
 
     @property
     def content(self):
@@ -296,6 +296,7 @@ class Harbor:
 
 harbor = Harbor("https://harbor.corp.tele2.ru/")
 
+rep = harbor.get_all_projects()
 # rep = harbor.delete_repository_tag('library/filebeat', 'test6')
 
 # rep = harbor.get_all_repositories(9)
@@ -306,6 +307,6 @@ harbor = Harbor("https://harbor.corp.tele2.ru/")
 
 # rep = harbor.get_all_tags_in_chart('pd', 'auth-service')
 
-rep = harbor.delete_chart_tag('pd', 'auth-service', '2021.01.13-PD-CI-all-service-v2')
+# rep = harbor.delete_chart_tag('pd', 'auth-service', '2021.01.13-PD-CI-all-service-v2')
 
 print(str(rep))
