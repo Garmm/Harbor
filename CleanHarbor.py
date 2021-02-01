@@ -145,13 +145,19 @@ class ChartTags(ChartEntity):
 
 
 class RepositoryTagsEntity(IEntity):
-    def __init__(self, repository_name: str):
+    def __init__(self, repository_name: str, tag=None):
         self.__repository_name = repository_name
         self.__content = None
+        if tag:
+            self.__tag = tag
 
     @property
     def repository_name(self):
         return self.__repository_name
+
+    @property
+    def tag(self):
+        return self.__tag
 
     @property
     def content(self):
@@ -172,6 +178,18 @@ class RepositoryTags(RepositoryTagsEntity):
 
     def get_entity(self):
         return 'repository_tags'
+
+
+class DeleteRepositoryTag(RepositoryTagsEntity):
+    def __init__(self, repository_name, tag):
+        super().__init__(repository_name, tag)
+
+    def get_url(self, root_url):
+        url = root_url + 'repositories/' + str(self.repository_name.replace('/', '%2F')) + '/tags/' + str(self.tag)
+        return url
+
+    def get_entity(self):
+        return 'repository_tag'
 
 
 class Harbor:
@@ -197,7 +215,22 @@ class Harbor:
 
                 return entity
             else:
-                logger.error("Method: getcontent; Response status code : " + str(response.status_code) +
+                logger.error("Method: get_content; Response status code : " + str(response.status_code) +
+                             "; Reason : " + str(response.reason))
+        except Exception as e:
+            logger.error(e)
+
+    def __delete_content(self, entity: IEntity):
+        try:
+            response = requests.delete(
+                entity.get_url(self.api),
+                verify=False
+            )
+            if response.status_code == 200:
+                logger.info("Method: __delete_content; Tag - " + str(entity.repository_name) + ":" +
+                            str(entity.tag)) + "was deleted successfully"
+            else:
+                logger.error("Method: __delete_content; Response status code : " + str(response.status_code) +
                              "; Reason : " + str(response.reason))
         except Exception as e:
             logger.error(e)
@@ -227,10 +260,15 @@ class Harbor:
         self.__get_content(chart_tags)
         return chart_tags.content
 
+    def delete_repository_tag(self, repository_name: str, tag):
+        tag = DeleteRepositoryTag(repository_name, tag)
+        self.__delete_content(tag)
+        return tag.content
+
 
 harbor = Harbor("https://harbor.corp.tele2.ru/")
 
-rep = harbor.get_all_projects()
+rep = harbor.delete_repository_tag('library/filebeat', 'test6')
 
 # rep = harbor.get_all_repositories(9)
 
