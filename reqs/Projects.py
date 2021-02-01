@@ -1,4 +1,4 @@
-from IEntity import *
+from reqs.IEntity import *
 
 
 class Projects(IEntity):

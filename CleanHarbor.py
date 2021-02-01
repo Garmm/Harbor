@@ -1,12 +1,7 @@
-import json
 import requests
-from requests.auth import HTTPBasicAuth
-import sys
 import logging
-import time
 import datetime
-from datetime import date, timedelta
-from Projects import *
+from reqs.Projects import *
 
 # login = sys.argv[0]
 # pwd = sys.argv[1]

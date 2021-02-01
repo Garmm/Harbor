@@ -1,4 +1,4 @@
-from Projects import *
+from reqs.Projects import *
 
 
 class Project(Projects):
