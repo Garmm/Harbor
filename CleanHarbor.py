@@ -54,7 +54,8 @@ class Project(IEntity):
         url = root_url + 'projects'
         return url
 
-    de
+    def
+
 
     @property
     def content(self):
