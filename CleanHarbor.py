@@ -96,11 +96,13 @@ class Repository(ProjectEntity):
 
 
 class ChartEntity(IEntity):
-    def __init__(self, project_name: str, chart_name=None):
+    def __init__(self, project_name: str, chart_name=None, tag=None):
         self.__project_name = project_name
         self.__content = None
         if chart_name:
             self.__chart_name = chart_name
+        if tag:
+            self.__tag = tag
 
     @property
     def project_name(self):
@@ -109,6 +111,10 @@ class ChartEntity(IEntity):
     @property
     def chart_name(self):
         return self.__chart_name
+
+    @property
+    def tag(self):
+        return self.__tag
 
     @property
     def content(self):
@@ -192,6 +198,19 @@ class DeleteRepositoryTag(RepositoryTagsEntity):
         return 'repository_tag'
 
 
+class DeleteChartTag(ChartEntity):
+    def __init__(self, project_name: str, chart_name: str, tag):
+        super().__init__(project_name, chart_name, tag)
+
+    def get_url(self, root_url):
+        url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts/' \
+              + str(self.chart_name.replace('/', '%2F')) + '/' + str(self.tag)
+        return url
+
+    def get_entity(self):
+        return 'chart_tag'
+
+
 class Harbor:
     def __init__(self, dns: str):
         self.api = dns + "api/"
@@ -212,8 +231,6 @@ class Harbor:
                 else:
                     logger.info("Method: get_content; Content " + entity.get_entity() + " was got successfully")
                     entity.content = response.json()
-
-                return entity
             else:
                 logger.error("Method: get_content; Response status code : " + str(response.status_code) +
                              "; Reason : " + str(response.reason))
@@ -262,13 +279,24 @@ class Harbor:
 
     def delete_repository_tag(self, repository_name: str, tag):
         tag = DeleteRepositoryTag(repository_name, tag)
-        self.__delete_content(tag)
-        return tag.content
+        self.__get_content(tag)
+        if tag.content:
+            self.__delete_content(tag)
+        else:
+            pass
+
+    def delete_chart_tag (self, project_name: str, chart_name: str, tag):
+        tag = DeleteChartTag(project_name, chart_name, tag)
+        self.__get_content(tag)
+        if tag.content:
+            self.__delete_content(tag)
+        else:
+            pass
 
 
 harbor = Harbor("https://harbor.corp.tele2.ru/")
 
-rep = harbor.delete_repository_tag('library/filebeat', 'test6')
+# rep = harbor.delete_repository_tag('library/filebeat', 'test6')
 
 # rep = harbor.get_all_repositories(9)
 
@@ -277,5 +305,7 @@ rep = harbor.delete_repository_tag('library/filebeat', 'test6')
 # rep = harbor.get_all_charts_in_project('pd')
 
 # rep = harbor.get_all_tags_in_chart('pd', 'auth-service')
+
+rep = harbor.delete_chart_tag('pd', 'auth-service', '2021.01.13-PD-CI-all-service-v2')
 
 print(str(rep))
