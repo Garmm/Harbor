@@ -1,6 +1,7 @@
 class IEntity:
 
-    def get_url(self, root_url):
+    @property
+    def url(self):
         pass
 
     def get_entity(self):
@@ -13,3 +14,11 @@ class IEntity:
     @content.setter
     def content(self, content):
         pass
+
+    @property
+    def removable(self):
+        pass
+
+    # @removable.setter
+    # def removable(self, flag:bool):
+    #     pass

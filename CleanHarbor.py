@@ -1,12 +1,14 @@
-import requests
-import logging
-import datetime
-from reqs.Projects import *
-
 # login = sys.argv[0]
 # pwd = sys.argv[1]
 
+
+import datetime
+import logging
+import requests
+
 # Базовая конфигурация логгера
+from reqs.Harbor import Harbor
+from reqs.IEntity import IEntity
 
 logging.basicConfig(
     # filename="/var/log/harbor_clean/output_" + (datetime.datetime.now()).strftime("%Y-%m-%d") + ".txt",
@@ -169,92 +171,16 @@ class DeleteChartTag(ChartEntity):
         return 'chart_tag'
 
 
-class Harbor:
-    def __init__(self, dns: str):
-        self.api = dns + "api/"
-
-    def __get_content(self, entity: IEntity, sort_field=None, reverse=False):
-
-        try:
-            response = requests.get(
-                entity.get_url(self.api),
-                verify=False
-            )
-            if response.status_code == 200:
-
-                if sort_field:
-                    logger.info("Method: get_content; Content " + entity.get_entity()
-                                + " was got successfully. With sort_field :" + sort_field)
-                    entity.content = sorted(response.json(), key=lambda k: k[sort_field], reverse=reverse)
-                else:
-                    logger.info("Method: get_content; Content " + entity.get_entity() + " was got successfully")
-                    entity.content = response.json()
-            else:
-                logger.error("Method: get_content; Response status code : " + str(response.status_code) +
-                             "; Reason : " + str(response.reason))
-        except Exception as e:
-            logger.error(e)
-
-    def __delete_content(self, entity: IEntity):
-        try:
-            response = requests.delete(
-                entity.get_url(self.api),
-                verify=False
-            )
-            if response.status_code == 200:
-                logger.info("Method: __delete_content; Tag - " + str(entity.repository_name) + ":" +
-                            str(entity.tag)) + "was deleted successfully"
-            else:
-                logger.error("Method: __delete_content; Response status code : " + str(response.status_code) +
-                             "; Reason : " + str(response.reason))
-        except Exception as e:
-            logger.error(e)
-
-    def get_all_projects(self):
-        project = Projects()
-        self.__get_content(project)
-        return project.content
-
-    def get_all_repositories(self, project_id: int):
-        repository = Repository(project_id)
-        self.__get_content(repository)
-        return repository.content
-
-    def get_all_tags_in_repository(self, repository_name: str):
-        repository_tags = RepositoryTags(repository_name)
-        self.__get_content(repository_tags)
-        return repository_tags.content
-
-    def get_all_charts_in_project(self, project_name: str):
-        charts = Chart(project_name)
-        self.__get_content(charts)
-        return charts.content
-
-    def get_all_tags_in_chart(self, project_name: str, chart_name: str):
-        chart_tags = ChartTags(project_name, chart_name)
-        self.__get_content(chart_tags)
-        return chart_tags.content
-
-    def delete_repository_tag(self, repository_name: str, tag):
-        tag = DeleteRepositoryTag(repository_name, tag)
-        self.__get_content(tag)
-        if tag.content:
-            self.__delete_content(tag)
-        else:
-            pass
-
-    def delete_chart_tag (self, project_name: str, chart_name: str, tag):
-        tag = DeleteChartTag(project_name, chart_name, tag)
-        self.__get_content(tag)
-        if tag.content:
-            self.__delete_content(tag)
-        else:
-            pass
-
-
 harbor = Harbor("https://harbor.corp.tele2.ru/")
 
-rep = harbor.get_all_projects()
+all_projects = harbor.get_all_projects()
+
+# single_project = harbor.get_project()
+
+# single_project.get_repositories('library')
+
+# rep.get_repositories(harbor.get_all_projects())
+
 # rep = harbor.delete_repository_tag('library/filebeat', 'test6')
 
 # rep = harbor.get_all_repositories(9)
@@ -267,4 +193,5 @@ rep = harbor.get_all_projects()
 
 # rep = harbor.delete_chart_tag('pd', 'auth-service', '2021.01.13-PD-CI-all-service-v2')
 
-print(str(rep))
+
+#print(str(single_project))

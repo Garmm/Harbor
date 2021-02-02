@@ -1,14 +1,16 @@
-from reqs.IEntity import *
+from reqs import Harbor
+from reqs.IEntity import IEntity
 
 
 class Projects(IEntity):
 
-    def __init__(self):
+    def __init__(self, harbor: Harbor):
         self.__content = None
+        self.__url = harbor.root_url()
 
-    def get_url(self, root_url: str):
-        url = root_url + 'projects'
-        return url
+    @property
+    def url(self):
+        return self.__url + 'projects'
 
     def get_entity(self):
         return 'project'
@@ -20,3 +22,7 @@ class Projects(IEntity):
     @content.setter
     def content(self, content):
         self.__content = content
+
+    @property
+    def removable(self):
+        return False
