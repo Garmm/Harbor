@@ -10,7 +10,7 @@ class Tag(IEntity, IRemovable):
         self.__http_client = http_client
         self.__all_args = args
         self.__url = root_url
-        self.__size = args['size']
+        self.__size: int = args['size']
 
     @property
     def root_url(self):
@@ -29,5 +29,4 @@ class Tag(IEntity, IRemovable):
 
     def remove(self):
         if self.__size > 0:
-            self.__http_client.delete_content(self.url)
-
+            self.__http_client.delete_content(self, self.url)

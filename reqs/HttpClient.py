@@ -5,6 +5,7 @@ import requests
 
 from reqs import IEntity
 from reqs.IHttpClient import IHttpClient
+from reqs.IRemovable import IRemovable
 
 logging.basicConfig(
     # filename="/var/log/harbor_clean/output_" + (datetime.datetime.now()).strftime("%Y-%m-%d") + ".txt",
@@ -43,20 +44,20 @@ class HttpClient(IHttpClient):
         except Exception as e:
             logger.error(e)
 
-    def delete_content(self, url: str, entity: IEntity):
-        if entity.removable:
+    def delete_content(self, entity: IRemovable, url: str):
+        if entity.removable():
             try:
                 response = requests.delete(
                     url,
                     verify=False
                 )
                 if response.status_code == 200:
-                    logger.info("Method: __delete_content; Tag - " + str(entity.repository_name) + ":" +
-                                str(entity.tag)) + "was deleted successfully"
+                    logger.info("Method: delete_content; Type: " + entity.__module__ + " with name: " + entity.name +
+                                " -was deleted successfully. Was used URL - " + url)
                 else:
-                    logger.error("Method: __delete_content; Response status code : " + str(response.status_code) +
+                    logger.error("Method: delete_content; Response status code : " + str(response.status_code) +
                                  "; Reason : " + str(response.reason))
             except Exception as e:
                 logger.error(e)
         else:
-            logger.error("Method: __delete_content; Reason: Entity is not removable!")
+            logger.error("Method: delete_content; Reason: Entity " + entity.__module__ + " is not removable!")

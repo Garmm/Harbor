@@ -55,16 +55,16 @@ class ChartEntity(IEntity):
         self.__content = content
 
 
-class Chart(ChartEntity):
-    def __init__(self, project_name: str):
-        super().__init__(project_name)
-
-    def get_url(self, root_url):
-        url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts'
-        return url
-
-    def get_entity(self):
-        return 'chart'
+# class Chart(ChartEntity):
+#     def __init__(self, project_name: str):
+#         super().__init__(project_name)
+#
+#     def get_url(self, root_url):
+#         url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts'
+#         return url
+#
+#     def get_entity(self):
+#         return 'chart'
 
 
 class ChartTags(ChartEntity):
@@ -95,22 +95,25 @@ class DeleteChartTag(ChartEntity):
 #all_projects = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_all_projects()
 
 
-single_project = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_project_by_name('library')
+single_project = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_project_by_name('pd')
+#
+# all_repositories_in_project = Project(HttpClient(), single_project.content, single_project.root_url).get_repositories()
+#
+# single_repository_in_project = Project(HttpClient(), single_project.content, single_project.root_url
+#                                        ).get_repository_by_name('library/filebeat')
+#
+# all_tags_in_image = Repository(
+#     HttpClient(), single_repository_in_project.content, single_repository_in_project.root_url)\
+#     .get_tags()
+#
+# single_tag_in_image = Repository(
+#     HttpClient(), single_repository_in_project.content, single_repository_in_project.root_url)\
+#     .get_image_tag_by_name('6.6.2')
+#
+# single_tag_in_image.remove()
 
-all_repositories_in_project = Project(HttpClient(), single_project.content, single_project.root_url).get_repositories()
 
-single_repository_in_project = Project(HttpClient(), single_project.content, single_project.root_url
-                                       ).get_repository_by_name('library/filebeat')
-
-all_tags_in_image = Repository(
-    HttpClient(), single_repository_in_project.content, single_repository_in_project.root_url)\
-    .get_tags()
-
-single_tag_in_image = Repository(
-    HttpClient(), single_repository_in_project.content, single_repository_in_project.root_url)\
-    .get_image_tag_by_name('6.6.2')
-
-single_tag_in_image.remove()
+all_charts_in_project = Project(HttpClient(), single_project.content, single_project.root_url).get_charts()
 
 # rep = harbor.get_all_charts_in_project('pd')
 

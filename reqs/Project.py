@@ -2,6 +2,7 @@ from reqs.IEntity import IEntity
 from reqs.IHttpClient import IHttpClient
 from reqs.ISearching import ISearching
 from reqs.Repository import Repository
+from reqs.Chart import Chart
 
 
 class Project(IEntity, ISearching):
@@ -41,5 +42,9 @@ class Project(IEntity, ISearching):
     def get_repository_by_name(self, repository_name: str):
         return self.search_entity_in_content(repository_name)
 
-    # def get_charts(self):
-    #     pass
+    def get_charts(self):
+        content = self.__http_client.get_content(self.root_url + '/chartrepo/' + self.name + '/charts')
+        charts = []
+        for c in content.json():
+            charts.append(Chart(self.__http_client, c, self.__url))
+        return charts
