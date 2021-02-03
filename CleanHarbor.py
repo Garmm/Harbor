@@ -8,7 +8,11 @@ import requests
 
 # Базовая конфигурация логгера
 from reqs.Harbor import Harbor
+from reqs.HttpClient import HttpClient
 from reqs.IEntity import IEntity
+from reqs.Project import Project
+from reqs.Projects import Projects
+from reqs.Repository import Repository
 
 logging.basicConfig(
     # filename="/var/log/harbor_clean/output_" + (datetime.datetime.now()).strftime("%Y-%m-%d") + ".txt",
@@ -23,36 +27,6 @@ logger = logging.getLogger(__name__)
 
 # Отключение проверки ssl сертификата
 requests.packages.urllib3.disable_warnings()
-
-
-class ProjectEntity(IEntity):
-    def __init__(self, project_id: int):
-        self.__project_id = project_id
-        self.__content = None
-
-    @property
-    def project_id(self):
-        return self.__project_id
-
-    @property
-    def content(self):
-        return self.__content
-
-    @content.setter
-    def content(self, content):
-        self.__content = content
-
-
-class Repository(ProjectEntity):
-    def __init__(self, project_id: int):
-        super().__init__(project_id)
-
-    def get_url(self, root_url):
-        url = root_url + 'repositories?project_id=' + str(self.project_id)
-        return url
-
-    def get_entity(self):
-        return 'repository'
 
 
 class ChartEntity(IEntity):
@@ -134,18 +108,6 @@ class RepositoryTagsEntity(IEntity):
         self.__content = content
 
 
-class RepositoryTags(RepositoryTagsEntity):
-    def __init__(self, repository_name):
-        super().__init__(repository_name)
-
-    def get_url(self, root_url):
-        url = root_url + 'repositories/' + str(self.repository_name.replace('/', '%2F')) + '/tags'
-        return url
-
-    def get_entity(self):
-        return 'repository_tags'
-
-
 class DeleteRepositoryTag(RepositoryTagsEntity):
     def __init__(self, repository_name, tag):
         super().__init__(repository_name, tag)
@@ -171,12 +133,23 @@ class DeleteChartTag(ChartEntity):
         return 'chart_tag'
 
 
-harbor = Harbor("https://harbor.corp.tele2.ru/")
+# harbor = Harbor("https://harbor.corp.tele2.ru/")
 
-all_projects = harbor.get_all_projects()
+all_projects = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_all_projects()
+
+
+single_project = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_project_by_name('library')
+
+all_repositories_in_project = Project(HttpClient(), single_project.content, single_project.root_url).get_repositories()
+
+single_repository_in_project = Project(HttpClient(), single_project.content, single_project.root_url
+                                       ).get_repository_by_name('library/filebeat')
+
+singele_image_inrepository = Repository(HttpClient(), single_repository_in_project.content,
+                                        single_repository_in_project.root_url).get_tags_in_image()
 
 # single_project = harbor.get_project()
-
+#
 # single_project.get_repositories('library')
 
 # rep.get_repositories(harbor.get_all_projects())
@@ -194,4 +167,5 @@ all_projects = harbor.get_all_projects()
 # rep = harbor.delete_chart_tag('pd', 'auth-service', '2021.01.13-PD-CI-all-service-v2')
 
 
-#print(str(single_project))
+for project in all_projects:
+    print(project.content)

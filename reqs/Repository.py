@@ -1,10 +1,11 @@
 from reqs.IEntity import IEntity
 from reqs.IHttpClient import IHttpClient
+from reqs.IRemovable import IRemovable
 from reqs.ISearching import ISearching
-from reqs.Repository import Repository
+from reqs.Tag import Tag
 
 
-class Project(IEntity, ISearching):
+class Repository(IEntity, IRemovable, ISearching):
     def __init__(self, http_client: IHttpClient, args: dict, root_url: str):
         self.project_id = args['project_id']
         self.name = args['name']
@@ -18,11 +19,14 @@ class Project(IEntity, ISearching):
 
     @property
     def url(self):
-        return self.__url + '/repositories?project_id='
+        return self.__url + '/repositories/'
 
     @property
     def content(self):
         return self.__all_args
+
+    def removable(self):
+        return True
 
     def search_entity_in_content(self, target):
         all_repositories = self.get_repositories()
@@ -30,16 +34,10 @@ class Project(IEntity, ISearching):
             if repository.name == target:
                 return repository
 
-    def get_repositories(self):
+    def get_tags_in_image(self):
         # Собираем URL для получения всех репозиториев в проекте
-        content = self.__http_client.get_content(self.url + str(self.project_id))
-        repositories = []
+        content = self.__http_client.get_content(self.url + str(self.name) + '/tags')
+        tags = []
         for c in content.json():
-            repositories.append(Repository(self.__http_client, c, self.__url))
-        return repositories
-
-    def get_repository_by_name(self, repository_name: str):
-        return self.search_entity_in_content(repository_name)
-
-    # def get_charts(self):
-    #     pass
+            tags.append(Tag(self.__http_client, c, self.__url))
+        return tags

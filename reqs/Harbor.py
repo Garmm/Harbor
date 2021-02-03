@@ -1,23 +1,21 @@
+from reqs.Project import Project
 from reqs.Projects import Projects
-from reqs import HttpClient as HttpClient
+from reqs.HttpClient import HttpClient
 
 
 class Harbor:
     def __init__(self, dns: str):
         self.__api = dns + "api/"
 
-    def root_url(self):
-        return self.__api
-
     def get_all_projects(self):
-        projects = Projects(self)
-        http = HttpClient.HttpClient()
-        http.get_content(projects)
+        projects = Projects(self.__api)
+        # http = HttpClient()
+        # http.get_content(projects)
         return projects
 
-    def get_project(self):
-        project = Project(self.get_all_projects())
-        return project
+    # def get_project(self):
+    #     project = Project(self.get_all_projects())
+    #     return project
 
     # def get_all_repositories(self, project_id: int):
     #     repository = Repository(project_id)
