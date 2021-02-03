@@ -58,3 +58,5 @@ class HttpClient(IHttpClient):
                                  "; Reason : " + str(response.reason))
             except Exception as e:
                 logger.error(e)
+        else:
+            logger.error("Method: __delete_content; Reason: Entity is not removable!")

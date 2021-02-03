@@ -29,15 +29,18 @@ class Repository(IEntity, IRemovable, ISearching):
         return True
 
     def search_entity_in_content(self, target):
-        all_repositories = self.get_repositories()
-        for repository in all_repositories:
-            if repository.name == target:
-                return repository
+        all_tags = self.get_tags()
+        for tag in all_tags:
+            if tag.name == target:
+                return tag
 
-    def get_tags_in_image(self):
+    def get_tags(self):
         # Собираем URL для получения всех репозиториев в проекте
         content = self.__http_client.get_content(self.url + str(self.name) + '/tags')
         tags = []
         for c in content.json():
-            tags.append(Tag(self.__http_client, c, self.__url))
+            tags.append(Tag(self.__http_client, c, content.url))
         return tags
+
+    def get_image_tag_by_name(self, tag_name: str):
+        return self.search_entity_in_content(tag_name)

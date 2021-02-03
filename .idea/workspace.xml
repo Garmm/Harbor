@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be046e2e-f572-48f0-9d29-98c4ebd7a8d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/reqs/IRemovable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reqs/ISearching.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reqs/Repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reqs/Tag.py" afterDir="false" />
+    <list default="true" id="be046e2e-f572-48f0-9d29-98c4ebd7a8d5" name="Default Changelist" comment="Added classes: Tag, Repository&#10;Added Interfaces: IRemovable, ISearching">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CleanHarbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/CleanHarbor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reqs/Harbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/Harbor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reqs/HttpClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/HttpClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reqs/IEntity.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/IEntity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reqs/Project.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/Project.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reqs/Projects.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/Projects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reqs/IRemovable.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/IRemovable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reqs/Repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/Repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reqs/Tag.py" beforeDir="false" afterPath="$PROJECT_DIR$/reqs/Tag.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,69 +17,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CleanHarbor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="190" column="96" selection-start-line="190" selection-start-column="79" selection-end-line="190" selection-end-column="96" />
+            <state relative-caret-position="302">
+              <caret line="112" column="28" lean-forward="true" selection-start-line="112" selection-start-column="28" selection-end-line="112" selection-end-column="28" />
               <folding>
                 <element signature="e#44#59#0" expanded="true" />
-                <element signature="e#772#1105#0" />
                 <element signature="e#1436#2051#0" />
                 <element signature="e#2084#2359#0" />
                 <element signature="e#2396#2765#0" />
-                <element signature="e#2809#3282#0" />
-                <element signature="e#3679#3995#0" />
                 <element signature="e#4037#4437#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/reqs/Repository.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reqs/Tag.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-              <folding>
-                <element signature="e#1#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reqs/Project.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-                <marker date="1612337530176" expanded="true" signature="895:1236" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reqs/Projects.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="25" selection-end-column="30" />
-              <folding>
-                <element signature="e#1#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -114,15 +57,15 @@
         <option value="$PROJECT_DIR$/Project.py" />
         <option value="$PROJECT_DIR$/reqs/IHttpClient.py" />
         <option value="$PROJECT_DIR$/reqs/Harbor.py" />
-        <option value="$PROJECT_DIR$/reqs/HttpClient.py" />
-        <option value="$PROJECT_DIR$/reqs/IRemovable.py" />
         <option value="$PROJECT_DIR$/reqs/ISearching.py" />
         <option value="$PROJECT_DIR$/reqs/Projects.py" />
         <option value="$PROJECT_DIR$/reqs/IEntity.py" />
-        <option value="$PROJECT_DIR$/CleanHarbor.py" />
         <option value="$PROJECT_DIR$/reqs/Project.py" />
         <option value="$PROJECT_DIR$/reqs/Repository.py" />
         <option value="$PROJECT_DIR$/reqs/Tag.py" />
+        <option value="$PROJECT_DIR$/reqs/HttpClient.py" />
+        <option value="$PROJECT_DIR$/reqs/IRemovable.py" />
+        <option value="$PROJECT_DIR$/CleanHarbor.py" />
       </list>
     </option>
   </component>
@@ -296,14 +239,22 @@
       <option name="project" value="LOCAL" />
       <updated>1612264060232</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added classes: Tag, Repository&#10;Added Interfaces: IRemovable, ISearching">
+      <created>1612337905375</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1612337905375</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" sideWeight="0.49947312" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" weight="0.36836404" />
@@ -312,7 +263,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -351,20 +302,16 @@
     <MESSAGE value="Create new project" />
     <MESSAGE value="created folder reqa" />
     <MESSAGE value="Refactoring Classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring Classes" />
+    <MESSAGE value="Added classes: Tag, Repository&#10;Added Interfaces: IRemovable, ISearching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added classes: Tag, Repository&#10;Added Interfaces: IRemovable, ISearching" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/CleanHarbor.py</url>
-          <line>211</line>
-          <option name="timeStamp" value="109" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reqs/Repository.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="113" />
+          <url>file://$PROJECT_DIR$/reqs/Projects.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="127" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -375,16 +322,24 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="single_project.get_repositories()" language="Python" />
-        <watch expression="self.url + str(self.name) + 'tags'" language="Python" />
-        <watch expression="content.json()" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>single_tag_in_image.root_url</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>single_tag_in_image.url</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>single_tag_in_image.content</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>content.json()</expression-string>
         <language-id>Python</language-id>
@@ -415,23 +370,10 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
+    </expressions>
+    <expressions id="setValue">
       <expression>
-        <expression-string>self.__root_url + 'repositories?project_id='</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.__root_url + 'repositories?project_id=' + str(self.project_id)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.url</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>self.__url += 'api'</expression-string>
+        <expression-string>&lt;reqs.Tag.Tag object at 0x000002022FCDBA90&gt;</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -469,29 +411,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reqs/IHttpClient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output_2021-02-03.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-508" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reqs/ISearching.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="45" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reqs/IRemovable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -502,47 +425,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reqs/HttpClient.py">
+    <entry file="file://$PROJECT_DIR$/output_2021-02-03.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="38" column="31" lean-forward="true" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CleanHarbor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="190" column="96" selection-start-line="190" selection-start-column="79" selection-end-line="190" selection-end-column="96" />
-          <folding>
-            <element signature="e#44#59#0" expanded="true" />
-            <element signature="e#772#1105#0" />
-            <element signature="e#1436#2051#0" />
-            <element signature="e#2084#2359#0" />
-            <element signature="e#2396#2765#0" />
-            <element signature="e#2809#3282#0" />
-            <element signature="e#3679#3995#0" />
-            <element signature="e#4037#4437#0" />
-          </folding>
-        </state>
+        <state relative-caret-position="-590" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reqs/Projects.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="25" selection-end-column="30" />
+        <state relative-caret-position="285">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="e#1#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/reqs/IHttpClient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reqs/IRemovable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reqs/HttpClient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="69" selection-start-line="53" selection-start-column="69" selection-end-line="53" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reqs/Tag.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reqs/Repository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="28" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/reqs/Project.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        <state relative-caret-position="748">
+          <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
             <marker date="1612337530176" expanded="true" signature="895:1236" ph="..." />
@@ -550,22 +495,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reqs/Tag.py">
+    <entry file="file://$PROJECT_DIR$/CleanHarbor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        <state relative-caret-position="302">
+          <caret line="112" column="28" lean-forward="true" selection-start-line="112" selection-start-column="28" selection-end-line="112" selection-end-column="28" />
           <folding>
-            <element signature="e#1#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reqs/Repository.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#44#59#0" expanded="true" />
+            <element signature="e#1436#2051#0" />
+            <element signature="e#2084#2359#0" />
+            <element signature="e#2396#2765#0" />
+            <element signature="e#4037#4437#0" />
           </folding>
         </state>
       </provider>
