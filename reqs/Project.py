@@ -48,3 +48,4 @@ class Project(IEntity, ISearching):
         for c in content.json():
             charts.append(Chart(self.__http_client, c, self.__url))
         return charts
+

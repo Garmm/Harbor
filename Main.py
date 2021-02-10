@@ -2,7 +2,6 @@
 # pwd = sys.argv[1]
 import datetime
 import logging
-import requests
 from reqs.HttpClient import HttpClient
 from reqs.IEntity import IEntity
 from reqs.Project import Project
@@ -20,9 +19,6 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-
-# Отключение проверки ssl сертификата
-requests.packages.urllib3.disable_warnings()
 
 
 class ChartEntity(IEntity):
@@ -66,41 +62,45 @@ class ChartEntity(IEntity):
 #     def get_entity(self):
 #         return 'chart'
 
-
-class ChartTags(ChartEntity):
-    def __init__(self, project_name: str, chart_name: str):
-        super().__init__(project_name, chart_name)
-
-    def get_url(self, root_url):
-        url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts/' \
-              + str(self.chart_name.replace('/', '%2F'))
-        return url
-
-    def get_entity(self):
-        return 'chart_tags'
-
-
-class DeleteChartTag(ChartEntity):
-    def __init__(self, project_name: str, chart_name: str, tag):
-        super().__init__(project_name, chart_name, tag)
-
-    def get_url(self, root_url):
-        url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts/' \
-              + str(self.chart_name.replace('/', '%2F')) + '/' + str(self.tag)
-        return url
-
-    def get_entity(self):
-        return 'chart_tag'
-
-#all_projects = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_all_projects()
-
-
-single_project = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_project_by_name('pd')
 #
-# all_repositories_in_project = Project(HttpClient(), single_project.content, single_project.root_url).get_repositories()
+# class ChartTags(ChartEntity):
+#     def __init__(self, project_name: str, chart_name: str):
+#         super().__init__(project_name, chart_name)
 #
-# single_repository_in_project = Project(HttpClient(), single_project.content, single_project.root_url
-#                                        ).get_repository_by_name('library/filebeat')
+#     def get_url(self, root_url):
+#         url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts/' \
+#               + str(self.chart_name.replace('/', '%2F'))
+#         return url
+#
+#     def get_entity(self):
+#         return 'chart_tags'
+#
+#
+# class DeleteChartTag(ChartEntity):
+#     def __init__(self, project_name: str, chart_name: str, tag):
+#         super().__init__(project_name, chart_name, tag)
+#
+#     def get_url(self, root_url):
+#         url = root_url + 'chartrepo/' + str(self.project_name.replace('/', '%2F')) + '/charts/' \
+#               + str(self.chart_name.replace('/', '%2F')) + '/' + str(self.tag)
+#         return url
+#
+#     def get_entity(self):
+#         return 'chart_tag'
+
+all_projects = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_all_projects()
+
+
+project = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_project_by_name('library')
+
+all_repositories_in_project = project.get_repositories()
+
+all_tags_in_image = Repository(HttpClient(), project.content, project.root_url).get_tags_by_image_name('library/filebeat')
+
+tag = 1
+
+
+# single_project = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_project_by_name('pd')
 #
 # all_tags_in_image = Repository(
 #     HttpClient(), single_repository_in_project.content, single_repository_in_project.root_url)\
@@ -113,7 +113,7 @@ single_project = Projects('https://harbor.corp.tele2.ru/', HttpClient()).get_pro
 # single_tag_in_image.remove()
 
 
-all_charts_in_project = Project(HttpClient(), single_project.content, single_project.root_url).get_charts()
+# all_charts_in_project = Project(HttpClient(), single_project.content, single_project.root_url).get_charts()
 
 # rep = harbor.get_all_charts_in_project('pd')
 

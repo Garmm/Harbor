@@ -1,12 +1,10 @@
 import datetime
 import logging
-
 import requests
-
-from reqs import IEntity
 from reqs.IHttpClient import IHttpClient
 from reqs.IRemovable import IRemovable
 
+# Базовая конфигурация логгера
 logging.basicConfig(
     # filename="/var/log/harbor_clean/output_" + (datetime.datetime.now()).strftime("%Y-%m-%d") + ".txt",
     filename="output_" + (datetime.datetime.now()).strftime("%Y-%m-%d") + ".txt",
@@ -18,6 +16,8 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+# Отключение проверки ssl сертификата
+requests.packages.urllib3.disable_warnings()
 
 class HttpClient(IHttpClient):
     def __init__(self):

@@ -19,11 +19,11 @@ class Projects(IEntity, ISearching):
     def url(self):
         return self.__url + '/projects'
 
-    def search_entity_in_content(self, target):
-        all_projects = self.get_all_projects()
-        for project in all_projects:
-            if project.name == target:
-                return project
+    # def search_entity_in_content(self, target):
+    #     all_projects = self.get_all_projects()
+    #     for project in all_projects:
+    #         if project.name == target:
+    #             return project
 
     def get_all_projects(self):
         content = self.__http_client.get_content(self.url)
@@ -33,5 +33,7 @@ class Projects(IEntity, ISearching):
         return projects
 
     def get_project_by_name(self, project_name: str):
-        return self.search_entity_in_content(project_name)
-
+        all_projects = self.get_all_projects()
+        for project in all_projects:
+            if project.name == project_name:
+                return project
